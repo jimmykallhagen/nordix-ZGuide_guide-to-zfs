@@ -13,6 +13,6 @@
    </br>
    [<kbd> <br> **NOT CREATED** <br> </kbd>]()▪️ Nordix Guide to Zvol - Make Block device for VM, Make temporary Slog, L2arc and Special vdev</br>
    </br>
-   [<kbd> <br> **NOT CREATED** <br> </kbd>]()▪️ Nordix Guide to L2ARC</br>
+   [<kbd> <br> **ZGUIDE: 4** <br> </kbd>](https://github.com/jimmykallhagen/nordix-ZGuide_guide-to-zfs/blob/main/nordix-zguide-zvol-cache.md)▪️ Nordix Guide to L2ARC</br>
    </br>
    [<kbd> <br> **NOT CREATED** <br> </kbd>]()▪️ Nordix Guide to Slog</br>
