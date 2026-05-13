@@ -40,7 +40,7 @@ Once we have started the partition manager, we will find our drive. What we are 
 
 ## 5. This is what we want to achieve, two unformatted partitions made with GPT partition scheme.
  - You repeat this on all HHD that you will use in your zpool
- - Adjust the partitions for what you want to allocate for size of storage volume to the different raid configurations to the different raid configurations
+ - Adjust the partitions for what you want to allocate for size of storage volume to the different raid configurations
 ![5](https://github.com/jimmykallhagen/nordix-zfs/blob/main/screenshots/5.png)
 
 ---
