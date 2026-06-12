@@ -13,14 +13,14 @@ If you haven't read my previous ZFS storage guide, do that first, in case there 
  - [**Nordix ZFS Storage Guide**](/nordix-tank.md)
 ---
 
-## To break away from the terminal a bit, I will now start the guide by showing how I partitioned my HHD with the partition manager program.
+## To break away from the terminal a bit, I will now start the guide by showing how I partitioned my HDD with the partition manager program.
 
 If you dont have partitionmanager,you need to install it:
 ```Fish
 sudo pacman -Sy partitionmanager
 ```
 
-Once we have started the partition manager, we will find our drive. What we are going to do now you must do the same on all the HHDs you are going to include in your zpool. Be sure to choose the right device here otherwise it will be wrong.
+Once we have started the partition manager, we will find our drive. What we are going to do now you must do the same on all the HDD's you are going to include in your zpool. Be sure to choose the right device here otherwise it will be wrong.
 
 ## 1. I start by creating a partition scheme
  - We will create a GPT Schema
@@ -39,7 +39,7 @@ Once we have started the partition manager, we will find our drive. What we are 
 ![4](https://github.com/jimmykallhagen/nordix-zfs/blob/main/screenshots/4.png)
 
 ## 5. This is what we want to achieve, two unformatted partitions made with GPT partition scheme.
- - You repeat this on all HHD that you will use in your zpool
+ - You repeat this on all HDD that you will use in your zpool
  - Adjust the partitions for what you want to allocate for size of storage volume to the different raid configurations
 ![5](https://github.com/jimmykallhagen/nordix-zfs/blob/main/screenshots/5.png)
 
@@ -91,9 +91,9 @@ lrwxrwxrwx 1 root root 10  wwn-0x5000cca261c0c52f-part2 -> ../../sde2
 ````
 
 ***This is what we should choose if we are creating the storage volume from SATA devices**
-So since we have now divided each HHD into two partitions, we now have to take and group them correctly
+So since we have now divided each HDD into two partitions, we now have to take and group them correctly
 
- - HHD
+ - HDD
 For my stripe pool I will now use:
 ```Fish
 /dev/disk/by-id/ata-HUH728080ALN600_2EHXRH1X-part1
@@ -198,12 +198,12 @@ tank-z1 raidz1 /dev/disk/by-id/ata-HUH728080ALN600_2EHXRH1X-part2 /dev/disk/by-i
  state: ONLINE
  config:
 
-	NAME                                            STATE     READ WRITE CKSUM
-	nordix                                         ONLINE       0     0     0
-	 nvme-WDS100T1X0E-00AFY0_20476B802969          ONLINE       0     0     0
-	 nvme-KINGSTON_SFYRS1000G_50026B76869480A7     ONLINE       0     0     0
-	 nvme-Samsung_SSD_980_PRO_1TB_S5GXNF0R605071H  ONLINE       0     0     0
-	 nvme-KINGSTON_SFYRS1000G_50026B7686948127     ONLINE       0     0     0
+  NAME                                            STATE     READ WRITE CKSUM
+  nordix                                         ONLINE       0     0     0
+   nvme-WDS100T1X0E-00AFY0_20476B802969          ONLINE       0     0     0
+   nvme-KINGSTON_SFYRS1000G_50026B76869480A7     ONLINE       0     0     0
+   nvme-Samsung_SSD_980_PRO_1TB_S5GXNF0R605071H  ONLINE       0     0     0
+   nvme-KINGSTON_SFYRS1000G_50026B7686948127     ONLINE       0     0     0
 
 errors: No known data errors
 
@@ -211,11 +211,11 @@ errors: No known data errors
  state: ONLINE
  config:
 
-	NAME                                  STATE     READ WRITE CKSUM
-	tank                                 ONLINE       0     0     0
-	 ata-HUH728080ALN600_2EHXRH1X-part1  ONLINE       0     0     0
-	 ata-HUH728080ALN600_VJG1U0SX-part1  ONLINE       0     0     0
-	 ata-HUH728080ALN600_VJG1PJBX-part1  ONLINE       0     0     0
+  NAME                                  STATE     READ WRITE CKSUM
+  tank                                 ONLINE       0     0     0
+   ata-HUH728080ALN600_2EHXRH1X-part1  ONLINE       0     0     0
+   ata-HUH728080ALN600_VJG1U0SX-part1  ONLINE       0     0     0
+   ata-HUH728080ALN600_VJG1PJBX-part1  ONLINE       0     0     0
 
 errors: No known data errors
 
@@ -223,12 +223,12 @@ errors: No known data errors
  state: ONLINE
  config:
 
-	NAME                                    STATE     READ WRITE CKSUM
-	tank-z1                                ONLINE       0     0     0
-	 raidz1-0                              ONLINE       0     0     0
-	   ata-HUH728080ALN600_2EHXRH1X-part2  ONLINE       0     0     0
-	   ata-HUH728080ALN600_VJG1U0SX-part2  ONLINE       0     0     0
-	   ata-HUH728080ALN600_VJG1PJBX-part2  ONLINE       0     0     0
+  NAME                                    STATE     READ WRITE CKSUM
+  tank-z1                                ONLINE       0     0     0
+   raidz1-0                              ONLINE       0     0     0
+     ata-HUH728080ALN600_2EHXRH1X-part2  ONLINE       0     0     0
+     ata-HUH728080ALN600_VJG1U0SX-part2  ONLINE       0     0     0
+     ata-HUH728080ALN600_VJG1PJBX-part2  ONLINE       0     0     0
 
 errors: No known data errors
 ```
@@ -246,7 +246,7 @@ tank special mirror /dev/disk/by-id/ata-INTEL_SSDSC2CW120A3_CVCV430601BD120BGN /
 
 ---
 
-**Done, now we have a fast stripe zpool for VM, Gaming and everything that is not critical data, and at the same time we have created some of these HHD as a safe storage volume which then became 2TB**
+**Done, now we have a fast stripe zpool for VM, Gaming and everything that is not critical data, and at the same time we have created some of these HDD as a safe storage volume which then became 2TB**
 
 
 
