@@ -7,10 +7,10 @@
 
  > in my computer I have 4 nvme gen4 in zfs stripe for my system
  > I also have a zpool consisting of 4 hard drives with two SATA SSD drives as a special vdev, it is created with a redundancy part for which I will also create an L2ARC.
-                     </br>
+</br>
  > I believe that running my storage pool tank with primarycache=all is unnecessary 
  > and you have more important data to cache in ARC than my media pool has so i run primarycache=metdata on my storage pools 
-                      </br>
+</br>
  > instead I will create a zvol on my system zpool
  > the one I have 4 nvme in stripe which I will use as L2ARC for my HDD pool
 
