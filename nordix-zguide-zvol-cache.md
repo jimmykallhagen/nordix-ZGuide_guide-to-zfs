@@ -1,17 +1,18 @@
+
 # Nordix ZGuide - Zvol as L2ARC 
 
-## **I will only recommend using L2ARC for HHD zpool's**
+## **I will only recommend using L2ARC for HDD zpool's**
 
 ---
 
  > in my computer I have 4 nvme gen4 in zfs stripe for my system
  > I also have a zpool consisting of 4 hard drives with two SATA SSD drives as a special vdev, it is created with a redundancy part for which I will also create an L2ARC.
-</br>
+                     </br>
  > I believe that running my storage pool tank with primarycache=all is unnecessary 
  > and you have more important data to cache in ARC than my media pool has so i run primarycache=metdata on my storage pools 
-</br>
+                      </br>
  > instead I will create a zvol on my system zpool
- > the one I have 4 nvme in stripe which I will use as L2ARC for my HHD pool
+ > the one I have 4 nvme in stripe which I will use as L2ARC for my HDD pool
 
 ---
 
@@ -76,12 +77,12 @@ I will create zvol - L2ARC for my zpool tank, but I will also create one for my 
 
 ## Add cache to zpool 
 
-**now we will use these zvols as cache for my HHD zpools**
+**now we will use these zvols as cache for my HDD zpools**
 
 zvol-l2arc-tank will be cache for tank
 zvol-l2arc-tankz1 will be cache for tank-z1
 
- > You need the full path to the zvol 
+> You need the full path to the zvol 
  > You find the zvol's in /dev/zvol/*
  
 Full path for zvol-l2arc-tank is:
@@ -109,18 +110,18 @@ zpool status tank
  state: ONLINE
 config:
 
-	NAME                                            STATE     READ WRITE CKSUM
-	tank                                            ONLINE       0     0     0
-	  ata-HUH728080ALN600_2EHXRH1X-part1            ONLINE       0     0     0
-	  ata-HUH728080ALN600_VJG1U0SX-part1            ONLINE       0     0     0
-	  ata-HUH728080ALN600_VJG1PJBX-part1            ONLINE       0     0     0
-	  ata-HUH728080ALN600_2EGRERKX-part1            ONLINE       0     0     0
-	special	
-	  mirror-4                                      ONLINE       0     0     0
-	    ata-INTEL_SSDSC2CW120A3_CVCV430601BD120BGN  ONLINE       0     0     0
-	    ata-KINGSTON_SA400S37120G_50026B767B0067D9  ONLINE       0     0     0
-	cache
-	  zvol/nordix/zvol-l2arc-tank                   ONLINE       0     0     0  block size: 4096B configured, 16384B native
+  NAME                                            STATE     READ WRITE CKSUM
+  tank                                            ONLINE       0     0     0
+    ata-HUH728080ALN600_2EHXRH1X-part1            ONLINE       0     0     0
+    ata-HUH728080ALN600_VJG1U0SX-part1            ONLINE       0     0     0
+    ata-HUH728080ALN600_VJG1PJBX-part1            ONLINE       0     0     0
+    ata-HUH728080ALN600_2EGRERKX-part1            ONLINE       0     0     0
+  special 
+    mirror-4                                      ONLINE       0     0     0
+      ata-INTEL_SSDSC2CW120A3_CVCV430601BD120BGN  ONLINE       0     0     0
+      ata-KINGSTON_SA400S37120G_50026B767B0067D9  ONLINE       0     0     0
+  cache
+    zvol/nordix/zvol-l2arc-tank                   ONLINE       0     0     0  block size: 4096B configured, 16384B native
 
 errors: No known data errors
 ```
@@ -131,15 +132,15 @@ zpool status tank-z1
  state: ONLINE
 config:
 
-	NAME                                    STATE     READ WRITE CKSUM
-	tank-z1                                 ONLINE       0     0     0
-	  raidz1-0                              ONLINE       0     0     0
-	    ata-HUH728080ALN600_2EHXRH1X-part2  ONLINE       0     0     0
-	    ata-HUH728080ALN600_VJG1U0SX-part2  ONLINE       0     0     0
-	    ata-HUH728080ALN600_VJG1PJBX-part2  ONLINE       0     0     0
-	    ata-HUH728080ALN600_2EGRERKX-part2  ONLINE       0     0     0
-	cache
-	  zvol/nordix/zvol-l2arc-tankz1         ONLINE       0     0     0  block size: 4096B configured, 16384B native
+  NAME                                    STATE     READ WRITE CKSUM
+  tank-z1                                 ONLINE       0     0     0
+    raidz1-0                              ONLINE       0     0     0
+      ata-HUH728080ALN600_2EHXRH1X-part2  ONLINE       0     0     0
+      ata-HUH728080ALN600_VJG1U0SX-part2  ONLINE       0     0     0
+      ata-HUH728080ALN600_VJG1PJBX-part2  ONLINE       0     0     0
+      ata-HUH728080ALN600_2EGRERKX-part2  ONLINE       0     0     0
+  cache
+    zvol/nordix/zvol-l2arc-tankz1         ONLINE       0     0     0  block size: 4096B configured, 16384B native
 
 errors: No known data errors
 ```
