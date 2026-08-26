@@ -212,7 +212,7 @@ even though this is a stripe pool, this is because I will run my special vdev's 
 ---
 **_5️⃣_**
 **Special Vdev** - _a must_
-- This will add two SATA SSD disks in mirror for special vdevs, I prefer to just store metadata on them.
+- This will add two SATA SSD disks in mirror for special vdevs, when the storage capacity on the special vdev is low and the zpool is large, i prefer to just store metadata on them.
 - This is a large HDD pool for Virtual Machines, media and gaming, so setting the options to store small files on special vdevs is not really necessary.
 > Using SSD/NVME to store metadata on a HDD pool is something you should consider doing
 as it gives a huge gain in performance on latency and your large HDD pool now becomes a much nicer pool for both games and Virtual Machines.
